@@ -1,0 +1,25 @@
+[project]
+name = "cs336_basics"          # ← 与代码目录同名，元数据才能被找到
+version = "0.1.0"
+description = "A tiny GPT-like language model (CS336 A1 extracted)"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "regex>=2024.11.6",
+    "torch~=2.6.0; sys_platform != 'darwin' or platform_machine != 'x86_64'",
+    "torch~=2.2.2; sys_platform == 'darwin' and platform_machine == 'x86_64'",
+    "tensorboard",
+]
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cs336_basics*"]    # ← 告诉 setuptools 只把 cs336_basics 当包
+
+# 下面两行 uv 专用配置不再需要，可删可留（这里留空即可）
+[tool.uv]
+package = false
+python-preference = "managed"
